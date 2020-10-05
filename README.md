@@ -26,3 +26,4 @@
     * Nghiệm sẽ được chọn random trong khoảng: $x_{0}-b_{0}\leq x\leq x_{0}+b_{0}$  
 - Thực hiện chọn lọc trong quần thể  
     * Giống như đã mô tả trong phần ý tưởng  
+$`\sqrt{2}`$  
