@@ -26,3 +26,8 @@
     * Nghiệm sẽ được chọn random trong khoảng: ![](https://latex.codecogs.com/svg.latex?\inline&space;x_{0}-b_{0}\leq&space;x\leq&space;x_{0}&plus;b_{0})  
 - Thực hiện chọn lọc trong quần thể  
     * Giống như đã mô tả trong phần ý tưởng  
+
+## Hên xui?  
+
+- Bài toán có khả năng rơi vào trường hợp generate một quần thể với các giá trị `x` giống hệt nhau. Giá trị `x` này xấp xỉ bằng nghiệm cần tìm nhưng lại không thoả mãn điều kiện của ![](https://latex.codecogs.com/svg.latex?\inline&space;\varepsilon)  
+- Trong trường hợp này, xuất hiện 1 vòng lặp vô tận trong hàm `mate()` hoặc hàm `run()`  
