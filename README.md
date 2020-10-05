@@ -10,8 +10,8 @@
     * Giá trị thu được sẽ được lưu trữ tăng dần trong 1 mảng, ứng với mỗi giá trị `x` được chọn ngẫu nhiên  
 - Loại bỏ một nửa số lượng các cá thể có fitness thấp  
 - Các cá thể còn trụ lại được đem đi lai ngẫu nhiên với nhau và thu được 1 quần thể có số lượng như ban đầu  
-- Lặp lại quá trình trên cho đến khi thu được 1 giá trị ![](https://latex.codecogs.com/svg.latex?\inline&space;|ax_{0}^{2}&plus;bx_{0}&plus;c|\leq&space;\varepsilon)  
-    * $\varepsilon$ có thể tuỳ chọn. Trong bài là `0.0001`  
+- Lặp lại quá trình trên cho đến khi thu được 1 giá trị ![](https://latex.codecogs.com/svg.latex?\inline&space;\varepsilon) sao cho ![](https://latex.codecogs.com/svg.latex?\inline&space;|ax_{0}^{2}&plus;bx_{0}&plus;c|\leq&space;\varepsilon)  
+    * ![](https://latex.codecogs.com/svg.latex?\inline&space;\varepsilon) có thể tuỳ chọn. Trong bài là `0.0001`  
 
 ## Thực hiện  
 
