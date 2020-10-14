@@ -30,6 +30,11 @@ def float_to_bin(value):  # For testing.
 
 
 class Node:
+    """
+    Node dùng để lưu trữ giá trị nghiệm vừa random ra được
+    fitness là giá trị được tính từ hàm getFitness của class Genetic
+    """
+    
     def __init__(self, data, fitness = 1000):
         self.data = data
         self.fitness = fitness
@@ -39,15 +44,25 @@ class Genetic:
         self.array = []
         # self.length = random.randint(0, 10)
         # self.length = random.randint(200, 300)
+        
+        # số lượng quần để mặc định là 200
         self.length = 200
+        
+        # khoảng nghiệm được random trong khoảng [0, 10]
         self.boundary = random.uniform(0, 10)
         # self.boundary = 10000
         self.a = a
         self.b = b
         self.c = c
+        
+        # tính đỉnh của parabol 
         self.x0 = 0 # x0 = -b/2a
 
     def push(self, item):
+        """
+        đẩy node (chứa giá trị nghiệm và fitness) vào quần thể trước đó 
+        sắp xếp quần thể theo thứ tự giảm dần fitness 
+        """
         for i in range(len(self.array)):
             if self.array[i].fitness > item.fitness:
                 self.array.insert(i, item)
@@ -55,6 +70,9 @@ class Genetic:
         self.array.append(item)
 
     def run(self, a, b, c):
+        """
+        chạy thuật toán tìm nghiệm 
+        """
         print(self.boundary)
         self.a = a
         self.b = b
@@ -65,17 +83,14 @@ class Genetic:
             x = random.uniform(self.x0 - self.boundary, self.x0 + self.boundary)
             self.push(Node(x, self.getFitness(x)))
 
+        # count dùng để đếm số vòng while. không có gì đáng quan tâm lắm :> 
         count = 0
         while not self.array[0].fitness < 0.0001:
             count += 1
-            # print(count)
-            # print('length',self.length)
-            # print('array', len(self.array))
-
+            
+            # loại 1/2 số lượng cá thể trong quần thể. giữ lại 1/2 những cá thể tốt nhất  
             self.pop()
-            # node = self.getMaxFitnessItem()
-            # self.addMaxFitnessItem(node)
-
+            
             self.mate()
             print(self.array[0].data)
 
@@ -83,6 +98,9 @@ class Genetic:
         print(count)
 
     def mate(self):
+        """
+        tiến hành lai ghép ngẫu nhiên giữa các cá thể của 1 quần thể sau chọn lọc 
+        """
         while len(self.array) < self.length:
             index1 = random.randint(0, len(self.array) - 1)
             index2 = random.randint(0, len(self.array) - 1)
@@ -108,6 +126,10 @@ class Genetic:
                     self.push(Node(x2, f2))
 
     def getCrossover(self, bin1, bin2):
+        """
+        ramdom ngẫu nhiên 1 vị trí trong dãy bit rồi trao đổi chéo nội dung 2 dãy bit tại vị trí đó 
+        trả về 2 số thực sau khi đã trao đổi chéo 
+        """
         crossover = random.randint(0, len(bin1))
         while (crossover) == 0:
             crossover = random.randint(0, len(bin1))
@@ -115,16 +137,20 @@ class Genetic:
         bin21 = bin2[0:crossover] + bin1[crossover:]
         return bin_to_float(bin11), bin_to_float(bin21)
 
-    # k dung
+    # không dùng 
     def addMaxFitnessItem(self, item):
         for i in range((self.length - 4) // 3):
             self.array.insert(0, item)
 
-    # k dung
+    # không dùng 
     def getMaxFitnessItem(self):
         return self.array[0]
 
     def pop(self):
+        """
+        loại bỏ 1 nửa số cá thể trong quần thể
+        những cá thể bị loại bỏ là những cá thể có giá trị fitness cao (lower = better)
+        """
         while len(self.array) > self.length // 2:
             self.array.pop()
 
